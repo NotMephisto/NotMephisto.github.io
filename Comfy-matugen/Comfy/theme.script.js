@@ -901,6 +901,16 @@ todo:
 						}
 
 						return customSchemes;
+				        },
+
+					defaultVal: (configScheme =
+						(getConfig("Color-Schemes") &&
+							Object.keys(getConfig("Color-Schemes")).find(scheme => scheme.toLowerCase() === configScheme.toLowerCase())) ||
+						configScheme),
+					condition: getConfig("Color-Schemes") && !preloadedScheme && !document.querySelector("body > style.marketplaceCSS.marketplaceScheme"),
+					callback: (name, value) => {
+						updateScheme(value);
+					}
 				},
 				{
 					type: Dropdown,
