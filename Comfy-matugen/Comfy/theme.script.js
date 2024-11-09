@@ -2004,7 +2004,7 @@ todo:
 	function updateScheme(scheme, message) {
 		const marketplace = document.querySelector("body > style.marketplaceCSS.marketplaceScheme");
 		const colorSchemes = getConfig("Color-Schemes");
-		const customcolorSchemes = getConfig("Custom-Color-Schemes")
+		const customcolorSchemes = getConfig("Custom-Color-Schemes");
 		const existingScheme = document.querySelector("style.comfyScheme");
 
 		existingScheme?.remove();
