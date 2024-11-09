@@ -902,12 +902,11 @@ todo:
 
 						return customSchemes;
 				        },
-
 					defaultVal: (configScheme =
-						(getConfig("Color-Schemes") &&
-							Object.keys(getConfig("Color-Schemes")).find(scheme => scheme.toLowerCase() === configScheme.toLowerCase())) ||
+						(getConfig("Custom-Color-Schemes") &&
+							Object.keys(getConfig("Custom-Color-Schemes")).find(scheme => scheme.toLowerCase() === configScheme.toLowerCase())) ||
 						configScheme),
-					condition: getConfig("Color-Schemes") && !preloadedScheme && !document.querySelector("body > style.marketplaceCSS.marketplaceScheme"),
+					condition: getConfig("Custom-Color-Schemes") && !preloadedScheme && !document.querySelector("body > style.marketplaceCSS.marketplaceScheme"),
 					callback: (name, value) => {
 						updateScheme(value);
 					}
@@ -2005,6 +2004,7 @@ todo:
 	function updateScheme(scheme, message) {
 		const marketplace = document.querySelector("body > style.marketplaceCSS.marketplaceScheme");
 		const colorSchemes = getConfig("Color-Schemes");
+		const customcolorSchemes = getConfig("Custom-Color-Schemes")
 		const existingScheme = document.querySelector("style.comfyScheme");
 
 		existingScheme?.remove();
