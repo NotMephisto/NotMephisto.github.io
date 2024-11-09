@@ -887,26 +887,26 @@ todo:
 				},
 				{
 					type: Dropdown,
-					name: "Custom-Color-Scheme",
-					title: `Custom Color Scheme`,
-					desc: "Test",
+					name: "Color-Scheme",
+					title: `Color Scheme`,
+					desc: "For faster loadtimes use cli to change color schemes",
 					options: () => {
-						const customSchemes = Object.keys(getConfig("Custom-Color-Schemes"));
-						const decapcustomSchemes = customSchemes.map(function (x) {
+						const schemes = Object.keys(getConfig("Color-Schemes"));
+						const decapSchemes = schemes.map(function (x) {
 							return x.toLowerCase();
 						});
 
-						if (!decapcustomSchemes.includes(configScheme.toLowerCase())) {
-							customSchemes.unshift(configScheme);
+						if (!decapSchemes.includes(configScheme.toLowerCase())) {
+							schemes.unshift(configScheme);
 						}
 
-						return customSchemes;
-				        },
+						return schemes;
+					},
 					defaultVal: (configScheme =
-						(getConfig("Custom-Color-Schemes") &&
-							Object.keys(getConfig("Custom-Color-Schemes")).find(scheme => scheme.toLowerCase() === configScheme.toLowerCase())) ||
+						(getConfig("Color-Schemes") &&
+							Object.keys(getConfig("Color-Schemes")).find(scheme => scheme.toLowerCase() === configScheme.toLowerCase())) ||
 						configScheme),
-					condition: getConfig("Custom-Color-Schemes") && !preloadedScheme && !document.querySelector("body > style.marketplaceCSS.marketplaceScheme"),
+					condition: getConfig("Color-Schemes") && !preloadedScheme && !document.querySelector("body > style.marketplaceCSS.marketplaceScheme"),
 					callback: (name, value) => {
 						updateScheme(value);
 					}
