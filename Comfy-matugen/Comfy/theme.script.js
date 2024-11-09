@@ -60,6 +60,21 @@ todo:
 			console.warn("[Comfy-Warning]: Failed to update color schemes:", error);
 		});
 
+	const custom_colorScheme = getConfig("Custom-Color-Scheme");
+
+	fetch("/home/mephisto/.config/spicetify/Themes/Comfy/Custom-colors/color.ini")
+		.then(response => response.text())
+		.then(iniContent => {
+			setConfig("Custom-Color-Schemes", parseIni(iniContent), "Successfully updated custom color schemes");
+			configScheme = 
+				(getConfig("Custom-Color-Schemes") && Object.keys(getConfig("Custom-Color-Schemes")).find(scheme => scheme.toLowerCase() === configScheme.toLowerCase())) ||
+				configScheme;
+			updateScheme(getConfig("Custom-Color-Scheme"), "updated");
+		})
+		.catch(error => {
+			console.warn("[Comfy-Warning]: Failed to update custom color schemes:", error);
+		});
+
 	// Window Zoom Variable
 	// todo: improve this? seems unoptimal but spotify messes with window.outerWidth on minimize so this is required currently
 	function updateZoomVariable() {
@@ -869,6 +884,23 @@ todo:
 					callback: (name, value) => {
 						updateScheme(value);
 					}
+				},
+				{
+					type: Dropdown,
+					name: "Custom-Color-Scheme",
+					title: `Custom Color Scheme`,
+					desc: "Test",
+					options: () => {
+						const customSchemes = Object.keys(getConfig("Custom-Color-Schemes"));
+						const decapcustomSchemes = customSchemes.map(function (x) {
+							return x.toLowerCase();
+						});
+
+						if (!decapcustomSchemes.includes(configScheme.toLowerCase())) {
+							customSchemes.unshift(configScheme);
+						}
+
+						return customSchemes;
 				},
 				{
 					type: Dropdown,
