@@ -903,7 +903,7 @@ todo:
 						return customSchemes;
 					},
 					defaultVal: (configScheme =
-						(getConfig("Custo-Color-Schemes") &&
+						(getConfig("Custom-Color-Schemes") &&
 							Object.keys(getConfig("Custom-Color-Schemes")).find(scheme => scheme.toLowerCase() === configScheme.toLowerCase())) ||
 						configScheme),
 					condition: getConfig("Custom-Color-Schemes") && !preloadedScheme && !document.querySelector("body > style.marketplaceCSS.marketplaceScheme"),
